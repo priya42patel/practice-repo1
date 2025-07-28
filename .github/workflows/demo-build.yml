@@ -1,0 +1,44 @@
+# on:[push]
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: list files
+#     runs:
+#       ls -l
+#       name: Run hello.py and save output
+#       run:
+#           python hello.py > output.txt
+#      name: uplod hello.py output as artifact
+#      uses: actions/uplod artifact@v4 
+#      with:
+#       name: hello-output
+#        path: output.txt
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version: [3.11, 3.12, 3.13]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.version }}
+
+      - name: List files
+        run: ls -l
+
+      - name: Run hello.py and save output
+        run: |
+             python hello.py > output-${{ matrix.version }}.txt
+
