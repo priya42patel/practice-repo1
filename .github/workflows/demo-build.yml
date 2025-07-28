@@ -6,16 +6,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: list files
-    runs:
+      runs:
        ls -l
-    name: Run hello.py and save output
-    run:
+    - name: Run hello.py and save output
+      run:
           python hello.py > output.txt
-    name: uplod hello.py output as artifact
-    uses: actions/uplod artifact@v4 
-    with:
-       name: hello-output
-       path: output.txt
+    - name: uplod hello.py output as artifact
+      uses: actions/uplod artifact@v4 
+      with:
+      - name: hello-output
+        path: output.txt
 
 #   on: [push]
 
