@@ -18,11 +18,12 @@
 #       uses: actions/upload-artifact@v4 
 #       with:
 #         name: hello-output
-#         path: output.txt
+#         path: output.txt       
 
-  on: [push]
-    jobs:
-      build:
+on: [push]
+   
+jobs:
+   build:
        runs-on: ubuntu-latest
 
     # strategy:
