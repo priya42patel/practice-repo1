@@ -19,29 +19,30 @@
 #       with:
 #         name: hello-output
 #         path: output.txt       
+  
+on: [push, pull_request]
 
-on: [push]
-   
 jobs:
-   build:
-       runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-    # strategy:
-    #   matrix:
-    #     version: [3.11, 3.12, 3.13]
+    strategy:
+      matrix:
+        version: [3.11, 3.12, 3.13]
 
-    # steps:
-    #   - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-    #   - name: Set up Python ${{ matrix.version }}
-    #     uses: actions/setup-python@v4
-    #     with:
-    #       python-version: ${{ matrix.version }}
+      - name: Set up Python ${{ matrix.version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.version }}
 
-    #   - name: List files
-    #     run: ls -l
+      - name: List files
+        run: ls -l
 
-    #   - name: Run hello.py and save output
-    #     run: |
-    #          python hello.py > output-${{ matrix.version }}.txt
+      - name: Run hello.py and save output
+        run: |
+          python hello.py > output-${{ matrix.version }}.txt
+
 
